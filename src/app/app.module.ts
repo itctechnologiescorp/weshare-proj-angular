@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Templates/auth/login/login.component';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { LoginComponent } from './Templates/auth/login/login.component';
     LoginComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule
   ],
