@@ -8,6 +8,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Templates/auth/login/login.component';
 import { HomeComponent } from './Templates/home/home.component';
 import { SelectionComponent } from './Templates/selection/selection.component';
+import { SignInComponent } from './Templates/sign-in/sign-in.component';
+import { SignUpComponent } from './Templates/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './Templates/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { SelectionComponent } from './Templates/selection/selection.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SelectionComponent
+    SelectionComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
