@@ -11,7 +11,9 @@ import { SelectionComponent } from './Templates/selection/selection.component';
 import { SignInComponent } from './Templates/sign-in/sign-in.component';
 import { SignUpComponent } from './Templates/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './Templates/forgot-password/forgot-password.component';
-
+import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
+import { AuthService } from './Templates/auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,12 @@ import { ForgotPasswordComponent } from './Templates/forgot-password/forgot-pass
     CommonModule,
     NgbModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
