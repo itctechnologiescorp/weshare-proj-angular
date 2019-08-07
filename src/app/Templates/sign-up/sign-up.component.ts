@@ -32,13 +32,14 @@ Mileage: string = '';
 Make: string = '';   
 Model: string = ''; 
 RegNo: string = ''; 
-RCBookCopy: string = ''; 
+RCBookCopy: string = '';
+successMsg: boolean; 
 
 constructor(private frmbuilder: FormBuilder,
             private authService: AuthService)  
  {
     this.signupForm = frmbuilder.group({
-      Key: new FormControl('100001'),
+      Key: new FormControl(100002),
       Region: new FormControl('IND'),
       Lang: new FormControl('EN'),  
       Name: new FormControl(),
@@ -68,8 +69,12 @@ constructor(private frmbuilder: FormBuilder,
   }
   PostData(signupForm) {
     console.log('form', signupForm.value);
-    this.authService.createUser(signupForm.value).subscribe((res: any)=>{
-      console.log('res', res);
+    this.authService.createUser(signupForm.value).subscribe((res: any) => {
+      if (res.status === 200) {
+        this.successMsg = true;
+      } else {
+        this.successMsg = true;
+      }
     });
   }
 }
