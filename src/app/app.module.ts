@@ -14,6 +14,9 @@ import { ForgotPasswordComponent } from './Templates/forgot-password/forgot-pass
 import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 import { AuthService } from './Templates/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavMenuComponent } from './Templates/nav-menu/nav-menu.component';
+import { NotificationComponent } from './Templates/notification/notification.component';
+import { EmergencyComponent } from './Templates/emergency/emergency.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     SelectionComponent,
     SignInComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    NavMenuComponent,
+    NotificationComponent,
+    EmergencyComponent
   ],
   imports: [
     CommonModule,
