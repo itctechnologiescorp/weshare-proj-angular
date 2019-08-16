@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,FormControl,Validators,NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators, NgForm} from '@angular/forms';
 import { AuthService } from '../../Templates/auth/auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class SignUpComponent implements OnInit {
 signupForm: FormGroup;
 Key: number = 100001;
 Region: string = 'IND';
-Lang: string = 'EN';  
+Lang: string = 'EN';
 Name: string = '';
 isProvider: boolean = false;
 isCar: boolean = false;
@@ -33,7 +33,8 @@ Make: string = '';
 Model: string = ''; 
 RegNo: string = ''; 
 RCBookCopy: string = '';
-successMsg: boolean; 
+successMsg: boolean;
+submitted = false; 
 
 constructor(private frmbuilder: FormBuilder,
             private authService: AuthService)  
@@ -42,7 +43,7 @@ constructor(private frmbuilder: FormBuilder,
       Key: new FormControl(100002),
       Region: new FormControl('IND'),
       Lang: new FormControl('EN'),  
-      Name: new FormControl(),
+      Name: new FormControl('', Validators.required),
       isProvider: new FormControl('FALSE'),
       isCar: new FormControl('FALSE'),
       Gender: new FormControl('M'),
@@ -69,12 +70,15 @@ constructor(private frmbuilder: FormBuilder,
   }
   PostData(signupForm) {
     console.log('form', signupForm.value);
+    this.submitted = true;
     this.authService.createUser(signupForm.value).subscribe((res: any) => {
       if (res.status === 200) {
         this.successMsg = true;
       } else {
-        this.successMsg = true;
+        this.successMsg = false;
       }
     });
   }
+
+  get f() { return this.signupForm.controls; }
 }
