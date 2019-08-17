@@ -47,38 +47,51 @@ constructor(private frmbuilder: FormBuilder,
       isProvider: new FormControl('FALSE'),
       isCar: new FormControl('FALSE'),
       Gender: new FormControl('M'),
-      EmailId: new FormControl(),
-      PhoneNo: new FormControl(),
-      Employer: new FormControl(),
-      Idproof: new FormControl(),
-      Addr1: new FormControl(),
+      EmailId: new FormControl('', Validators.required),
+      PhoneNo: new FormControl('', Validators.required),
+      Employer: new FormControl('', Validators.required),
+      Idproof: new FormControl('', Validators.required),
+      Addr1: new FormControl('', Validators.required),
       Addr2: new FormControl(),
-      Country: new FormControl(),
-      State: new FormControl(),
-      City: new FormControl(),
-      Zip: new FormControl(),
-      isPetrol: new FormControl('FALSE'),
-      Mileage: new FormControl(),
-      Make: new FormControl(),
-      Model: new FormControl(),
-      RegNo: new FormControl(),
-      RCBookCopy: new FormControl()
+      Country: new FormControl('', Validators.required),
+      State: new FormControl('', Validators.required),
+      City: new FormControl('', Validators.required),
+      Zip: new FormControl('', Validators.required),
+      isPetrol: new FormControl('', Validators.required),
+      Mileage: new FormControl('', Validators.required),
+      Make: new FormControl('', Validators.required),
+      Model: new FormControl('', Validators.required),
+      RegNo: new FormControl('', Validators.required),
+      RCBookCopy: new FormControl('', Validators.required),
+      vehicleDetails: new FormControl('', Validators.required)
     });  
    }
 
   ngOnInit() {
   }
+
+
   PostData(signupForm) {
-    console.log('form', signupForm.value);
-    this.submitted = true;
-    this.authService.createUser(signupForm.value).subscribe((res: any) => {
-      if (res.status === 200) {
-        this.successMsg = true;
-      } else {
-        this.successMsg = false;
-      }
-    });
+    if(this.signupForm.invalid){
+      console.log('invalid')
+      this.submitted = true;
+    } else{
+      console.log('form', signupForm.value);
+      this.submitted = true;
+      this.authService.createUser(signupForm.value).subscribe((res: any) => {
+        if (res.status === 200) {
+          this.successMsg = true;
+        } else {
+          this.successMsg = false;
+        }
+      });
+      this.submitted = true;
+    }
+      
   }
 
-  get f() { return this.signupForm.controls; }
+  get f() { 
+    return this.signupForm.controls; 
+  }
+  
 }

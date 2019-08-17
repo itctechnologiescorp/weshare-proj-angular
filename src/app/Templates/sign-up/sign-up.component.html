@@ -10,117 +10,175 @@
   
     <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
       <div class="form-group">
-        <label for="usr">Full Name</label>
-        <input type="text" formControlName="Name" class="form-control" id="usr">
+        <label for="usr">Full Name <span class="text-danger">*</span></label>
+        <input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" >
         <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
           <div *ngIf="f.Name.errors.required">Full Name is required</div>
+        </div>
       </div>
 
-      </div>
       <div class="form-group">
-        <label for="usr">Email ID</label>
-        <input type="text" formControlName="EmailId" class="form-control" id="usr">
+        <label for="usr">Email ID <span class="text-danger">*</span></label>
+        <input type="text" formControlName="EmailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }">
+        <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
+          <div *ngIf="f.EmailId.errors.required">Email is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="usr">Mobile</label>
-        <input type="text" formControlName="PhoneNo" class="form-control" id="usr">
+        <label for="usr">Mobile <span class="text-danger">*</span></label>
+        <input type="text" formControlName="PhoneNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.PhoneNo.errors }">
+        <div *ngIf="submitted && f.PhoneNo.errors" class="invalid-feedback">
+          <div *ngIf="f.PhoneNo.errors.required">Mobile Number is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="usr">Employed In</label>
-        <input type="text" formControlName="Employer" class="form-control" id="usr">
+        <label for="usr">Employed In <span class="text-danger">*</span></label>
+        <input type="text" formControlName="Employer" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Employer.errors }">
+        <div *ngIf="submitted && f.Employer.errors" class="invalid-feedback">
+          <div *ngIf="f.Employer.errors.required">Employed In is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="usr">ID Proof</label>
-        <input type="file" formControlName="Idproof" class="form-control" id="usr">
+        <label for="usr">ID Proof <span class="text-danger">*</span></label>
+        <input type="file" formControlName="Idproof" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Idproof.errors }">
+        <div *ngIf="submitted && f.Idproof.errors" class="invalid-feedback">
+          <div *ngIf="f.Idproof.errors.required">ID Proof is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="usr">Home Address 1</label>
-        <input type="text" formControlName="Addr1" class="form-control" id="usr">
+        <label for="usr">Home Address 1 <span class="text-danger">*</span></label>
+        <input type="text" formControlName="Addr1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Addr1.errors }">
+        <div *ngIf="submitted && f.Addr1.errors" class="invalid-feedback">
+          <div *ngIf="f.Addr1.errors.required">Address1 is required</div>
+        </div>
       </div>
+
       <div class="form-group">
         <label for="usr">Home Address 2</label>
         <input type="text" formControlName="Addr2" class="form-control" id="usr">
       </div>
+
       <div class="form-group">
-        <label for="sel1">Country</label>
-        <select class="form-control" id="sel1" formControlName="Country">
+        <label for="sel1">Country <span class="text-danger">*</span></label>
+        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Country.errors }" formControlName="Country">
           <option>India</option>
           <option>Pakistan</option>
           <option>Srilanka</option>
           <option>Bangladesh</option>
         </select>
+        <div *ngIf="submitted && f.Country.errors" class="invalid-feedback">
+          <div *ngIf="f.Country.errors.required">Country is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="sel1">State</label>
-        <select class="form-control" id="sel1" formControlName="State">
+        <label for="sel1">State <span class="text-danger">*</span></label>
+        <select class="form-control" formControlName="State" [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
           <option>TamilNadu</option>
           <option>Kerala</option>
           <option>Karnataka</option>
           <option>Telangana</option>
         </select>
+        <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+          <div *ngIf="f.State.errors.required">State is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="sel1">City</label>
-        <select class="form-control" id="sel1" formControlName="City">
+        <label for="sel1">City <span class="text-danger">*</span></label>
+        <select class="form-control" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
           <option>Chennai</option>
           <option>Madurai</option>
           <option>Coimbatore</option>
           <option>Trichy</option>
         </select>
+        <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+          <div *ngIf="f.City.errors.required">City is required</div>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="usr">Zip Code</label>
-        <input type="text" class="form-control" id="usr" formControlName="Zip">
+        <label for="usr">Zip Code <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="Zip" [ngClass]="{ 'is-invalid': submitted && f.Zip.errors }">
+        <div *ngIf="submitted && f.Zip.errors" class="invalid-feedback">
+          <div *ngIf="f.Zip.errors.required">Zip Code is required</div>
+        </div>
       </div>
   
       <hr />
       
       <div class="form-group">
-          <label for="usr">Vehicle Details</label>
+          <label for="usr">Vehicle Details <span class="text-danger">*</span></label>
           <div class="checkbox ml-3">
-            <label class="mr-3"><input type="checkbox">&nbsp;Car</label>
-            <label class="mb-0"><input type="checkbox">&nbsp;Bike</label>
+            <label class="mr-3"><input type="checkbox" formControlName="vehicleDetails">&nbsp;Car</label>
+            <label class="mb-0"><input type="checkbox" formControlName="vehicleDetails">&nbsp;Bike</label>
           </div>
-          <label for="usr">Type</label>
+          <div *ngIf="submitted && f.vehicleDetails.errors" class="invalid-feedback">
+            <div *ngIf="f.vehicleDetails.errors.required">Vehicle Type is required</div>
+          </div>
+
+          <label for="usr">Type <span class="text-danger">*</span></label>
           <div class="radio ml-3">
             <label class="mr-3"><input type="radio" value="petrol" formControlName="isPetrol">&nbsp;Petrol</label>
             <label class="mb-0"><input type="radio" value="diesel" formControlName="isPetrol">&nbsp;Diesel</label>
           </div>
+          <div *ngIf="submitted && f.isPetrol.errors" class="invalid-feedback">
+            <div *ngIf="f.isPetrol.errors.required">Vehicle Details is required</div>
+          </div>
       </div>
 
       <div class="form-group">
-        <label for="usr">Mileage/Litre</label>
-        <input type="text" class="form-control" id="usr" formControlName="Mileage">
+        <label for="usr">Mileage/Litre <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="usr" formControlName="Mileage" [ngClass]="{ 'is-invalid': submitted && f.Mileage.errors }">
+        <div *ngIf="submitted && f.Mileage.errors" class="invalid-feedback">
+          <div *ngIf="f.Mileage.errors.required">Mileage is required</div>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="sel1">Make</label>
-        <select class="form-control" id="sel1" formControlName="Make">
+        <label for="sel1">Make <span class="text-danger">*</span></label>
+        <select class="form-control" formControlName="Make" [ngClass]="{ 'is-invalid': submitted && f.Make.errors }">
           <option>Toyota</option>
           <option>Maruthi</option>
           <option>Volkswagon</option>
           <option>Hyundai</option>
         </select>
+        <div *ngIf="submitted && f.Make.errors" class="invalid-feedback">
+          <div *ngIf="f.Make.errors.required">Vehicle Make is required</div>
+        </div>
       </div>
       
       <div class="form-group">
-        <label for="sel1">Model</label>
-        <select class="form-control" id="sel1" formControlName="Model">
+        <label for="sel1">Model <span class="text-danger">*</span></label>
+        <select class="form-control" id="sel1" formControlName="Model" [ngClass]="{ 'is-invalid': submitted && f.Model.errors }">
           <option>Innova</option>
           <option>Swift</option>
           <option>Polo</option>
           <option>i20</option>
         </select>
+        <div *ngIf="submitted && f.Model.errors" class="invalid-feedback">
+          <div *ngIf="f.Model.errors.required">Vehicle Model is required</div>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="usr">Register No.</label>
-        <input type="text" class="form-control" id="usr" formControlName="RegNo">
+        <label for="usr">Register No. <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.RegNo.errors }" formControlName="RegNo">
+        <div *ngIf="submitted && f.RegNo.errors" class="invalid-feedback">
+          <div *ngIf="f.RegNo.errors.required">Register No. is required</div>
+        </div>
       </div>
       
       <div class="form-group">
-        <label for="usr">RC Book</label>
-        <input type="file" class="form-control" id="usr" formControlName="RCBookCopy">
+        <label for="usr">RC Book <span class="text-danger">*</span></label>
+        <input type="file" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.RCBookCopy.errors }" formControlName="RCBookCopy">
+        <div *ngIf="submitted && f.RCBookCopy.errors" class="invalid-feedback">
+          <div *ngIf="f.RCBookCopy.errors.required">RC Book Copy is required</div>
+        </div>
       </div>
       
       <div class="text-center mb-5 mt-5">
