@@ -8,6 +8,8 @@ import { SignInComponent } from './Templates/sign-in/sign-in.component';
 import { ForgotPasswordComponent } from './Templates/forgot-password/forgot-password.component';
 import { NotificationComponent } from './Templates/notification/notification.component';
 import { EmergencyComponent } from './Templates/emergency/emergency.component';
+import { ProfilePasswordComponent } from './Templates/auth/profile-password/profile-password.component';
+import { AuthGuard } from './Templates/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -36,12 +38,17 @@ const routes: Routes = [
   },
   {
     path: 'notification',
-    component:NotificationComponent
+    component:NotificationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'emergency',
     component:EmergencyComponent
   },
+  {
+    path: 'profile-password',
+    component:ProfilePasswordComponent
+  }
 
 ];
 

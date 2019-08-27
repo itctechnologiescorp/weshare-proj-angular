@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavMenuComponent } from './Templates/nav-menu/nav-menu.component';
 import { NotificationComponent } from './Templates/notification/notification.component';
 import { EmergencyComponent } from './Templates/emergency/emergency.component';
+import { ProfilePasswordComponent } from './Templates/auth/profile-password/profile-password.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EmergencyComponent } from './Templates/emergency/emergency.component';
     ForgotPasswordComponent,
     NavMenuComponent,
     NotificationComponent,
-    EmergencyComponent
+    EmergencyComponent,
+    ProfilePasswordComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, NgForm} from '@angular/forms';
 import { AuthService } from '../../Templates/auth/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -38,7 +39,8 @@ submitted = false;
 userId: number; 
 
 constructor(private frmbuilder: FormBuilder,
-            private authService: AuthService)  
+            private authService: AuthService,
+            private router: Router)  
  {
     this.signupForm = frmbuilder.group({
       Key: new FormControl(100002),
@@ -72,7 +74,7 @@ constructor(private frmbuilder: FormBuilder,
     this.authService.getLastUserId().subscribe((res: any)=>{
        if (res.status === 200) {
         const data = res.data;
-        this.userId = Number(data.Key) + 1;
+        this.userId = Number(data) + 1;
         
       } else {
         this.userId = 100000;
@@ -96,6 +98,8 @@ constructor(private frmbuilder: FormBuilder,
         console.log('res', res);
         if (res.status === 200) {
           this.successMsg = true;
+          this.authService.saveProfileKey(this.userId);
+          this.router.navigate(['/profile-password'])
         } else {
           this.successMsg = false;
         }

@@ -4,8 +4,8 @@
     <div class="align-items-center mb-5 logo text-center">
         <img src="../assets/logo.PNG" class="" alt="Responsive image">
     </div>
-    <!-- <div *ngIf="successMsg" style="color: green">User has been added successfully</div>
-    <div *ngIf="!successMsg" style="color: green">Error occured</div> -->
+    <div *ngIf="successMsg" style="color: green">User has been added successfully</div>
+    <div *ngIf="!successMsg" style="color: green">Error occured</div>
     <h3 class="text-primary mb-4">Sign Up</h3>
   
     <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
