@@ -4,8 +4,8 @@
     <div class="align-items-center mb-5 logo text-center">
         <img src="../assets/logo.PNG" class="" alt="Responsive image">
     </div>
-    <div *ngIf="successMsg" style="color: green">User has been added successfully</div>
-    <div *ngIf="!successMsg" style="color: green">Error occured</div>
+    <div *ngIf="!errorMsg && successMsg" style="color: green">User has been added successfully</div>
+    <div *ngIf="!successMsg  && zerrorMsg" class="invalid-feedback">Error occured</div>
     <h3 class="text-primary mb-4">Sign Up</h3>
   
     <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
@@ -19,10 +19,11 @@
 
       <div class="form-group">
         <label for="usr">Email ID <span class="text-danger">*</span></label>
-        <input type="text" formControlName="EmailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }">
+        <input type="text" formControlName="EmailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }" (change)="checkIfEmailIdExists($event.target.value)">
         <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
           <div *ngIf="f.EmailId.errors.required">Email is required</div>
         </div>
+        <div *ngIf="emailIdExistMsg" class="invalid-feedback">Email id already exists</div>
       </div>
 
       <div class="form-group">
@@ -43,7 +44,7 @@
 
       <div class="form-group">
         <label for="usr">ID Proof <span class="text-danger">*</span></label>
-        <input type="file" formControlName="Idproof" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Idproof.errors }">
+        <input type="file" formControlName="Idproof" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Idproof.errors }" (change)="handleFileInput($event, 'idproof')" #fileInput>
         <div *ngIf="submitted && f.Idproof.errors" class="invalid-feedback">
           <div *ngIf="f.Idproof.errors.required">ID Proof is required</div>
         </div>
@@ -175,7 +176,7 @@
       
       <div class="form-group">
         <label for="usr">RC Book <span class="text-danger">*</span></label>
-        <input type="file" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.RCBookCopy.errors }" formControlName="RCBookCopy">
+        <input type="file" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.RCBookCopy.errors }" formControlName="RCBookCopy" (change)="handleFileInput($event, 'rcbook')">
         <div *ngIf="submitted && f.RCBookCopy.errors" class="invalid-feedback">
           <div *ngIf="f.RCBookCopy.errors.required">RC Book Copy is required</div>
         </div>

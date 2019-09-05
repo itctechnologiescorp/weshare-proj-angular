@@ -14,7 +14,9 @@ import { AuthGuard } from './Templates/auth/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: 
+  [AuthGuard]
   },
   {
     path:'selection',

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, NgForm} from '@angular/forms';
 import { AuthService } from '../../Templates/auth/auth.service';
 import {Router} from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,11 +38,21 @@ RCBookCopy: string = '';
 successMsg: boolean;
 submitted = false;
 userId: number; 
+errorMsg: boolean = false;
+emailIdExistMsg: boolean = false;
 
 constructor(private frmbuilder: FormBuilder,
             private authService: AuthService,
-            private router: Router)  
- {
+            private router: Router,
+            private cookieService: CookieService)  
+ { 
+  if(this.cookieService.get('token') !== '') {
+    this.router.navigateByUrl('/notification');
+  } else if(this.cookieService.get('selection') !== '') {
+    this.router.navigateByUrl('/signUp');
+  } else {
+    this.router.navigateByUrl('/');
+  }
     this.signupForm = frmbuilder.group({
       Key: new FormControl(100002),
       Region: new FormControl('IND'),
@@ -86,22 +97,19 @@ constructor(private frmbuilder: FormBuilder,
 
   PostData(signupForm) {
     this.signupForm.value.Key = this.userId;
-    this.signupForm.value.Idproof = null;
-    this.signupForm.value.RCBookCopy = null;
-    if(this.signupForm.invalid){
-      console.log('invalid')
-      this.submitted = true;
+    if(this.signupForm.invalid && !this.emailIdExistMsg){
+       this.submitted = true;
     } else{
-      console.log('form', signupForm.value);
+      
       this.submitted = true;
       this.authService.createUser(signupForm.value).subscribe((res: any) => {
-        console.log('res', res);
+        console.log('res', res)
         if (res.status === 200) {
           this.successMsg = true;
           this.authService.saveProfileKey(this.userId);
           this.router.navigate(['/profile-password'])
         } else {
-          this.successMsg = false;
+          this.errorMsg = true;
         }
       });
       this.submitted = true;
@@ -113,4 +121,28 @@ constructor(private frmbuilder: FormBuilder,
     return this.signupForm.controls; 
   }
   
+  checkIfEmailIdExists(value: string) {
+    const data = {email:value};
+    this.authService.emailIdExists(data).subscribe((res: any) => {
+      if(res.status === 200) {
+        this.emailIdExistMsg = true;
+      } else {
+        this.emailIdExistMsg = false;
+      }
+    });
+  }
+
+  handleFileInput(event: any, field: string) {
+     let reader = new FileReader();
+     const [file] = event.target.files;
+     reader.readAsDataURL(file);
+      reader.onload = () => {
+       if (field === 'idproof') {
+        this.signupForm.value.Idproof = reader.result;
+       } else {
+        this.signupForm.value.RCBookCopy = reader.result;
+       }
+     };
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from  '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: CookieService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,4 +25,8 @@ export class NavMenuComponent implements OnInit {
     document.getElementById("main").style.display = "block";
   }
 
+  logout(){
+    this.cookieService.delete('token');
+    this.router.navigateByUrl('/signIn');
+  }
 }

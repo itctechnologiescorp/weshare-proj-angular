@@ -18,6 +18,7 @@ import { NavMenuComponent } from './Templates/nav-menu/nav-menu.component';
 import { NotificationComponent } from './Templates/notification/notification.component';
 import { EmergencyComponent } from './Templates/emergency/emergency.component';
 import { ProfilePasswordComponent } from './Templates/auth/profile-password/profile-password.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ProfilePasswordComponent } from './Templates/auth/profile-password/prof
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

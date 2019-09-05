@@ -3,8 +3,8 @@
   <div class="align-items-center mb-5 logo text-center">
       <img src="../assets/logo.PNG" class="" alt="Responsive image">
   </div>
-  <div *ngIf="loginSuccessMsg" style="color: green">User has been loggedin successfully</div>
-    <div *ngIf="!loginSuccessMsg" style="color: red">Error occured</div>
+  <div *ngIf="!loginErrorMsg  && loginSuccessMsg" style="color: green">User has been loggedin successfully</div>
+    <div *ngIf="!loginSuccessMsg && loginErrorMsg" style="color: red">Error occured</div>
   <h2 class="text-primary mb-4">Sign-In</h2>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
